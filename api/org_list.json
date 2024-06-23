@@ -1,0 +1,22 @@
+{   
+    "succ": true,
+    "public_msg": "",
+    "data": [
+        {
+            "id": "org-1",
+            "name": "organization 1"
+        },
+        {
+            "id": "org-false-1",
+            "name": "organization false 1"
+        },
+        {
+            "id": "org-2",
+            "name": "organization 2"
+        },
+        {
+            "id": "org-3",
+            "name": "organization 3"
+        }
+    ]
+}

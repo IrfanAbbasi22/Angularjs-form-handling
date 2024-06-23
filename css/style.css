@@ -1,0 +1,12 @@
+form {
+  margin: 3rem;
+  font-size: 14px;
+}
+form .formInputWrapper {
+  max-width: 350px;
+  width: 100%;
+}
+form table {
+  height: -moz-max-content;
+  height: max-content;
+}/*# sourceMappingURL=style.css.map */

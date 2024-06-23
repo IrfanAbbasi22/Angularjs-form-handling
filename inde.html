@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular Learning</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body ng-app="myNewApp">
+
+    <!-- Main Form Wrapper -->
+    <div id="organizationForm" ng-controller="organizationForm">
+        <div class="container-fluid">
+            <form>
+                <div class="formRowWrapper d-flex gap-5">
+                    <div class="formInputWrapper">
+                        <div class="mb-3 form-group">
+                            <label for="selectOrganization" class="form-label">Select Organization <span class="text-danger">*</span></label>
+                            <select class="form-select" id="selectOrganization" required ng-change="fetchOrganizationData(formData.org_id)" ng-model="formData.org_id">
+                                <option ng-repeat="orgnization in allOrganizations" value="{{ orgnization.id }}">{{ orgnization.name }}</option>
+                            </select>
+                        </div>
+        
+                        <div class="mb-3 form-group">
+                            <label for="recivedAmt" class="form-label">Enter Received Amount <span class="text-danger">*</span></label>
+                            <input type="number" required class="form-control" id="recivedAmt" ng-disabled="!organizationData.org_pending_amt" ng-model="formData.received_amt">
+                            <small class="form-text text-danger" ng-show="convertStringToNum(organizationData.org_pending_amt) < convertStringToNum(formData.received_amt)">Amount can't be greater than {{ organizationData.org_pending_amt }}.</small>
+                        </div>
+        
+                        <div class="mb-3 form-group">
+                            <label for="paymentDate" class="form-label">Payment Received Date <span class="text-danger">*</span></label>
+                            <input type="text" required class="form-control" id="paymentDate" ng-model="formData.payment_date">
+                        </div>
+        
+                        <div class="mb-3 form-group">
+                            <label for="bankCharges" class="form-label">Bank Charges</label>
+                            <input type="number" class="form-control" id="bankCharges" ng-model="formData.bank_charges">
+                        </div>
+        
+                        <div class="mb-3 form-group">
+                            <label for="selectPaymentMethod" class="form-label">Payment Method <span class="text-danger">*</span></label>
+                            <select class="form-select" id="selectPaymentMethod" ng-model="formData.payment_mode">
+                                <option value="cash">Cash</option>
+                                <option value="bank_transfer">Bank Transfer</option>
+                            </select>
+                        </div>
+        
+                        <div class="mb-3 form-group">
+                            <label for="paymentReference" class="form-label">Reference</label>
+                            <input type="text" class="form-control" id="paymentReference" ng-model="formData.reference">
+                        </div>
+                    </div>
+
+                    <!-- Rides Data -->
+                     <div>
+                        <table class="table table-hover" ng-show="organizationData.rides.data.length">
+                             <thead>
+                                 <tr>
+                                     <th>Ride ID</th>
+                                     <th>Date &amp; Time</th>
+                                     <th>Details</th>
+                                     <th>Payable Amt.</th>
+                                     <th>Pending Amt.</th>
+                                     <th>Received Amt.</th>
+                                     <th style="min-width: 100px">Balance</th>
+                                 </tr>
+                             </thead>
+             
+                             <tbody>
+                                 <tr ng-repeat="ride_data in organizationData.rides.data">
+             
+                                     <td>{{ ride_data.formatted_ride_id }}</td>
+                                     
+                                     <td>{{ ride_data.ride_date }}</td>
+                                     
+                                     <td>
+                                         <p class="mb-3">
+                                             <strong>Customer Name:</strong> {{ ride_data.customer.name }}
+                                         </p>
+                                         
+                                         <p>
+                                             <strong>Driver Name:</strong> {{ ride_data.driver.name }}
+                                         </p>
+                                     </td>
+             
+                                     <td>
+                                         {{ ride_data.payable_summary.payable_amt }}
+                                     </td>
+             
+                                     <td>
+                                         {{ ride_data.payable_summary.pending_amt }}
+                                     </td>
+             
+                                     <td>
+                                         <div class="form-group mb-0">
+                                             <input type="number" required class="form-control border-0 border-bottom" step="0.01" ng-model="ride_data.payable_summary.amount"
+                                                 ng-init="ride_data.payable_summary.amount = ride_data.payable_summary.amount || 0">
+                                         </div>
+                                     </td>
+             
+                                     <td>
+                                         {{ ride_data.payable_summary.pending_amt - ride_data.payable_summary.amount }}
+                                     </td>
+                                 </tr>
+                             </tbody>
+                        </table>
+
+                        <!-- Form Data -->
+                         <div>
+                            <p><strong>Organization ID:</strong> {{ formData.org_id }}</p>
+                            <p><strong>Received Amount:</strong> {{ formData.received_amt }}</p>
+                            <p><strong>Payment Date:</strong> {{ formData.payment_date }}</p>
+                            <p><strong>Bank Charges:</strong> {{ formData.bank_charges }}</p>
+                            <p><strong>Reference:</strong> {{ formData.reference }}</p>
+                            <p><strong>Amount Data:</strong> <br/> 
+                                <span ng-repeat="ride in formData.amount_data"> 
+                                    ride id: {{ ride.ride_id }} <br/> 
+                                    amount: {{ ride.pay_amount }} 
+                                </span>
+                            </p>
+                         </div>
+                     </div>
+                </div>
+                
+                <button type="button" ng-click="submitInvoice()" ng-disabled="convertStringToNum(organizationData.org_pending_amt) < convertStringToNum(formData.received_amt) || convertStringToNum(formData.received_amt) == 0" class="btn btn-primary">Submit Invoice</button>
+            </form>
+
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js" integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+{
+    "succ": true,
+    "public_msg": "",
+    "data": {
+        "rides": {
+            "current_page": 1,
+            "data": [
+                {
+                    "ride_id": 1000,
+                    "formatted_ride_id": "ZEI-001000",
+                    "customer": {
+                        "id": 1149,
+                        "name": "Ashish Pal ORG2",
+                        "email": "ashish@nexgi.com",
+                        "mobile": "7835851117"
+                    },
+                    "pickup_location_search": "Dwarka Mor Metro Station",
+                    "drop_location_search": "Uttam Nagar, Delhi, 110059",
+                    "remarks": "",
+                    "driver": {
+                        "id": 783,
+                        "name": "Ashish Pal",
+                        "email": "ashishkumar7086@gmail.com",
+                        "mobile": "880274237"
+                    },
+                    "payable_summary": {
+                        "sub_total": "21.00",
+                        "discount": "0.00",
+                        "tax": "1.05",
+                        "payable_amt": "22.05",
+                        "pending_amt": "0.00",
+                        "paid_amt": "22.05"
+                    },
+                    "ride_date": "18 Jun, 2024 01:54 PM"
+                },
+                {
+                    "ride_id": 1001,
+                    "formatted_ride_id": "ZEI-001001",
+                    "customer": {
+                        "id": 933,
+                        "name": "Ashish Kumar ORG2",
+                        "email": "ashish@gmail.com",
+                        "mobile": "887766550"
+                    },
+                    "pickup_location_search": "Dwarka Mor, Vipin Garden, Nawada, Delhi, 110059, India",
+                    "drop_location_search": "Janakpuri, New Delhi, Delhi, India",
+                    "remarks": "",
+                    "driver": {
+                        "id": 783,
+                        "name": "Ashish Pal",
+                        "email": "ashishkumar7086@gmail.com",
+                        "mobile": "880274237"
+                    },
+                    "payable_summary": {
+                        "sub_total": "30.00",
+                        "discount": "0.00",
+                        "tax": "1.50",
+                        "payable_amt": "31.50",
+                        "pending_amt": "0.00",
+                        "paid_amt": "31.50"
+                    },
+                    "ride_date": "13 Jun, 2024 03:39 PM"
+                },
+                {
+                    "ride_id": 1002,
+                    "formatted_ride_id": "ZEI-001002",
+                    "customer": {
+                        "id": 933,
+                        "name": "Ashish Kumar ORG2",
+                        "email": "ashish@gmail.com",
+                        "mobile": "887766550"
+                    },
+                    "pickup_location_search": "Dwarka Mor, Vipin Garden, Nawada, Delhi, 110059, India",
+                    "drop_location_search": "Janakpuri, New Delhi, Delhi, India",
+                    "remarks": "",
+                    "driver": {
+                        "id": 783,
+                        "name": "Ashish Pal",
+                        "email": "ashishkumar7086@gmail.com",
+                        "mobile": "880274237"
+                    },
+                    "payable_summary": {
+                        "sub_total": "30.00",
+                        "discount": "0.00",
+                        "tax": "1.50",
+                        "payable_amt": "31.50",
+                        "pending_amt": "0.00",
+                        "paid_amt": "31.50"
+                    },
+                    "ride_date": "13 Jun, 2024 03:27 PM"
+                },
+                {
+                    "ride_id": 1003,
+                    "formatted_ride_id": "ZEI-001003",
+                    "customer": {
+                        "id": 933,
+                        "name": "Ashish Kumar ORG2",
+                        "email": "ashish@gmail.com",
+                        "mobile": "887766550"
+                    },
+                    "pickup_location_search": "Dwarka Mor, Vipin Garden, Nawada, Delhi, 110059, India",
+                    "drop_location_search": "Janakpuri, New Delhi, Delhi, India",
+                    "remarks": "",
+                    "driver": {
+                        "id": 783,
+                        "name": "Ashish Pal",
+                        "email": "ashishkumar7086@gmail.com",
+                        "mobile": "880274237"
+                    },
+                    "payable_summary": {
+                        "sub_total": "21.00",
+                        "discount": "0.00",
+                        "tax": "1.05",
+                        "payable_amt": "22.05",
+                        "pending_amt": "0.00",
+                        "paid_amt": "22.05"
+                    },
+                    "ride_date": "13 Jun, 2024 03:06 PM"
+                }
+            ],
+            "first_page_url": "https:\/\/beta.zeizzu.com\/api\/v1\/rides\/organizations\/pending-invoices?page=1",
+            "from": 1,
+            "last_page": 1,
+            "last_page_url": "https:\/\/beta.zeizzu.com\/api\/v1\/rides\/organizations\/pending-invoices?page=1",
+            "links": [
+                {
+                    "url": null,
+                    "label": "Previous",
+                    "active": false
+                },
+                {
+                    "url": "https:\/\/beta.zeizzu.com\/api\/v1\/rides\/organizations\/pending-invoices?page=1",
+                    "label": "1",
+                    "active": true
+                },
+                {
+                    "url": null,
+                    "label": "Next",
+                    "active": false
+                }
+            ],
+            "next_page_url": null,
+            "path": "https:\/\/beta.zeizzu.com\/api\/v1\/rides\/organizations\/pending-invoices",
+            "per_page": 10,
+            "prev_page_url": null,
+            "to": 4,
+            "total": 4
+        }
+    }
+}
